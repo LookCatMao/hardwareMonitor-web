@@ -1,3 +1,14 @@
+interface SocketOptions {
+	url: string
+	received?: Function
+	isHeart?: boolean
+	isReconnection?: boolean
+}
+
+/**
+ * 创建一个WebSocket实例
+ * @class
+ * */
 export class Socket {
 	private readonly url: string
 	private readonly callback: any
@@ -7,11 +18,11 @@ export class Socket {
 	private readonly _timeout: number
 	private readonly isHeart: any
 	private readonly isReconnection: any
-	/**
-	 * @description: 初始化实例属性，保存参数
+	/** WebSocket构造器
+	 * 	@param  options 构造器参数合集
 	 *
 	 */
-	constructor(options) {
+	constructor(options: SocketOptions) {
 		this.url = options.url
 		this.callback = options.received
 		this.ws = null
@@ -22,39 +33,43 @@ export class Socket {
 		this.isHeart = options.isHeart
 		this.isReconnection = options.isReconnection
 	}
-	async connect(data?) {
-		this.ws = new WebSocket(this.url)
-		// 建立连接
-		this.ws.onopen = (e) => {
-			this.status = "open"
-			console.log("连接成功", e)
-			if (this.isHeart) {
-				// 心跳
-				this._heartCheck()
+	connect(data?) {
+		return new Promise<boolean | string>((resolve, reject) => {
+			this.ws = new WebSocket(this.url)
+			// 建立连接
+			this.ws.onopen = (e) => {
+				this.status = "open"
+				console.log("连接成功", e)
+				if (this.isHeart) {
+					// 心跳
+					this._heartCheck()
+				}
+				// 给后台发送数据
+				if (data !== undefined) {
+					return (this.ws as WebSocket).send(JSON.stringify({ type: "init" }))
+				}
+				resolve(true)
 			}
-			// 给后台发送数据
-			if (data !== undefined) {
-				return (this.ws as WebSocket).send(JSON.stringify({ type: "init" }))
+			// 接受服务器返回的信息
+			this.ws.onmessage = (e) => {
+				if (typeof this.callback === "function") {
+					return this.callback(e.data)
+				} else {
+					console.log("参数的类型必须为函数")
+				}
 			}
-		}
-		// 接受服务器返回的信息
-		this.ws.onmessage = (e) => {
-			if (typeof this.callback === "function") {
-				return this.callback(e.data)
-			} else {
-				console.log("参数的类型必须为函数")
+			// 关闭连接
+			this.ws.onclose = (e) => {
+				console.log("onclose", e)
+				this._closeSocket(e)
 			}
-		}
-		// 关闭连接
-		this.ws.onclose = (e) => {
-			console.log("onclose", e)
-			this._closeSocket(e)
-		}
-		// 报错
-		this.ws.onerror = (e) => {
-			console.log("onerror", e)
-			this._closeSocket(e)
-		}
+			// 报错
+			this.ws.onerror = (e) => {
+				console.log("onerror", e)
+				this._closeSocket(e)
+				reject("onerror")
+			}
+		})
 	}
 	sendMsg(data) {
 		const msg = JSON.stringify(data)

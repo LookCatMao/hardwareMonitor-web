@@ -1,11 +1,15 @@
 <template>
 	<div id="app">
-		<div class="container">
-			<div class="left">
-				<Cpu />
+		<div class="hw-container">
+			<div class="top">
+				<div class="left">CPU</div>
+				<div class="center"><Gpu /></div>
+				<div class="right ram">RAM</div>
 			</div>
-			<div class="center"></div>
-			<div class="right"></div>
+			<div class="bottom">
+				<div class="left">DISK</div>
+				<div class="center">NETWORK</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -13,23 +17,14 @@
 <script setup lang="ts">
 	// import { getWebsocket } from "/@/utils/websocket"
 	// import { hwData } from "/@/utils/websocket"
-	import { Socket } from "/@/utils/ws"
 	import { onMounted } from "vue"
-	import { hwData } from "/@/data/data"
-	import Cpu from "/@/views/cpu/index.vue"
 
-	onMounted(() => {
-		const ws = new Socket({
-			url: "ws://127.0.0.1:8887",
-			isHeart: true,
-			isReconnection: false,
-			received: function (data) {
-				Object.assign(hwData, JSON.parse(data))
-			}
-		})
-		ws.connect()
-		ws.sendMsg("")
-	})
+	import Cpu from "/@/views/cpu/index.vue"
+	import Ram from "/@/views/ram/index.vue"
+	import { wsConnected } from "/@/utils/dataSource"
+	import Gpu from "/@/views/gpu/index.vue"
+
+	onMounted(() => {})
 </script>
 
 <style lang="less">
@@ -46,17 +41,28 @@
 		justify-content: center;
 		align-items: center;
 	}
-	.container {
+	.hw-container {
 		width: 960px;
 		height: 540px;
-		background-color: #eee;
+		background-color: #000;
+		color: #fff;
 		display: flex;
-		.left,
-		.center {
-			flex: 4;
-		}
-		.right {
-			flex: 2;
+		flex-direction: column;
+		padding: 5px;
+		> div {
+			display: flex;
+			flex: 1;
+			&.ram {
+				flex: 0.5;
+			}
+			> div {
+				flex: 1;
+				background-color: #222;
+				margin: 5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 	}
 </style>
