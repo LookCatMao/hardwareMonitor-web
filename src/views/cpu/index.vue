@@ -1,50 +1,60 @@
 <template>
-	<div class="cpu">
-		<p>处理器信息：</p>
-		<p v-if="getOneCpu">
-			<span>{{ getOneCpu.vendor }} {{ getOneCpu.model }}</span>
-			<span>线程数：{{ getOneCpu.totalCores }}</span>
-		</p>
-		<p v-else>---</p>
-		<ul>
-			<li v-for="item in cpuList">
-				<span>逻辑核心【{{ item.order }}】</span>
-				<span>使用率：{{ Number((1 - item.idle) * 100).toFixed(0) }} %</span>
-				<span>频率: {{ item.mhz }} MHz</span>
-			</li>
-		</ul>
+	<div class="cpu" :class="{ active: showDetail }">
+		<div class="display-basic">
+			<p class="head">
+				<span class="title">CPU{{ showDetail }}</span>
+				<span class="model">Intel(R) Core(TM) i7-9750H</span>
+			</p>
+			<div class="chart">
+				<LineChart />
+			</div>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
-	import { computed, defineComponent, ref, watchEffect } from "vue"
-	import { dataSource } from "/@/utils/dataSource"
+	import { defineComponent } from "vue"
+	import LineChart from "/@/components/lineChart/index.vue"
 
 	export default defineComponent({
-		setup() {
-			const cpuList = ref([])
-
-			const getOneCpu = computed(() => {
-				if (cpuList.value.length) {
-					return cpuList.value[0]
-				} else {
-					return false
-				}
-			})
-
-			watchEffect(() => {
-				if (dataSource.cpu) {
-					// 数据清空
-					cpuList.value.splice(0, cpuList.value.length)
-					// 推入新数据
-					cpuList.value.push(...dataSource.cpu.cpuList)
-				}
-			})
-			console.log(cpuList.value)
-
-			return { cpuList, getOneCpu }
+		name: "Cpu",
+		components: { LineChart },
+		props: {
+			showDetail: {
+				type: Boolean,
+				default: false
+			}
+		},
+		setup(props) {
+			return {}
 		}
 	})
 </script>
 
-<style scoped></style>
+<style lang="less" scoped>
+	.cpu {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		width: 40rem;
+		height: 28rem;
+		background-color: #444444;
+		padding: 1rem;
+		.head {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			margin-bottom: 0.625rem /* 10/16 */;
+			.title {
+				font-size: 2rem /* 32/16 */;
+			}
+			.model {
+				font-size: 1.125rem /* 18/16 */;
+			}
+		}
+		.chart {
+			width: 100%;
+			height: 21.875rem; /* 350/16 */
+		}
+	}
+</style>

@@ -1,119 +1,71 @@
 <template>
-	<div id="Gpu">
-		<div id="GpuChart" ref="chartElRef"></div>
+	<div class="gpu" :class="{ active: showDetail }">
+		<p class="head">
+			<span class="title">GPU{{ showDetail }}</span>
+			<span class="model">NVIDIA GeForce GTX 1660 Ti</span>
+		</p>
+		<div class="chart">
+			<LineChart />
+		</div>
+		<div class="text">
+			<div class="gpu-mem"></div>
+			<div class="gpu-temperature"></div>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
-	import * as echarts from "echarts"
-	import { onMounted, ref } from "vue"
-
+	import LineChart from "/@/components/lineChart/index.vue"
 	export default {
 		name: "Gpu",
-		setup() {
-			const chartElRef = ref<HTMLElement>()
-
-			let chart: any = null
-
-			const time: any = []
-			for (let i = 0; i <= 60; i++) {
-				time.push(i)
+		components: { LineChart },
+		props: {
+			showDetail: {
+				type: Boolean,
+				default: false
 			}
-
-			const radomData: any = []
-			for (let i = 0; i <= 60; i++) {
-				radomData.push(Math.floor(Math.random() * 100))
-			}
-
-			function setCharts(update = false) {
-				if (!chartElRef.value) return
-				if (!update) {
-					console.log("init chart")
-					chart = echarts.init(chartElRef.value)
-					chart.setOption({
-						grid: {
-							top: -1,
-							bottom: -1,
-							left: -1,
-							right: -1
-						},
-						xAxis: {
-							type: "category",
-							boundaryGap: false,
-							data: time,
-							splitLine: {
-								show: true, //显示纵向网格线
-								lineStyle: {
-									color: "#117dbb88",
-									width: 1
-								}
-							},
-							axisLine: {
-								show: false
-							},
-							axisTick: {
-								show: false //不显示刻度
-							},
-							axisLabel: {
-								interval: 9,
-								show: false
-							}
-						},
-						yAxis: {
-							type: "value",
-							min: 0,
-							max: 100,
-							splitNumber: 10,
-							axisLabel: {
-								interval: 9,
-								show: false
-							},
-							splitLine: {
-								show: true, //显示纵向网格线
-								lineStyle: {
-									color: "#117dbb88",
-									width: 1
-								}
-							}
-						},
-						series: [
-							{
-								data: radomData,
-								type: "line",
-								lineStyle: {
-									color: "#1881bd",
-									width: 1
-								},
-								symbol: "none",
-								areaStyle: {
-									color: "#1881bd22"
-								}
-							}
-						]
-					})
-				}
-			}
-
-			onMounted(() => {
-				setCharts()
-			})
-
-			return {
-				chartElRef
-			}
+		},
+		setup(props) {
+			return {}
 		}
 	}
 </script>
 
 <style lang="less" scoped>
-	#Gpu {
-		width: 100%;
-		height: 100%;
-		padding: 10px;
-		#GpuChart {
-			border: 1px solid #117dbb;
+	.gpu {
+		position: absolute;
+		top: 1rem;
+		left: 42rem;
+		width: 40rem;
+		height: 28rem;
+		background-color: #444444;
+		padding: 1rem;
+		.head {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			margin-bottom: 0.625rem /* 10/16 */;
+			.title {
+				font-size: 2rem /* 32/16 */;
+			}
+			.model {
+				font-size: 1.125rem /* 18/16 */;
+			}
+		}
+		.chart {
 			width: 100%;
-			height: 100%;
+			height: 17.5rem /* 280/16 */;
+			margin-bottom: 1rem /* 16/16 */;
+		}
+		.text {
+			display: flex;
+			height: 3rem;
+			& > div {
+				border-left: 1px solid #ccc;
+			}
+			&:first-child {
+				border-left: none;
+			}
 		}
 	}
 </style>

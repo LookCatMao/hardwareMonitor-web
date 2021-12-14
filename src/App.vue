@@ -1,28 +1,35 @@
 <template>
 	<div id="app">
-		<div class="hw-container">
-			<div class="top">
-				<div class="left">CPU</div>
-				<div class="center"><Gpu /></div>
-				<div class="right ram">RAM</div>
+		<AutoFitContainer>
+			<div class="hw-container">
+				<Cpu :showDetail="flag === 'cpu'" @click="showDetail('cpu')" />
+				<Gpu :showDetail="flag === 'gpu'" @click="showDetail('gpu')" />
 			</div>
-			<div class="bottom">
-				<div class="left">DISK</div>
-				<div class="center">NETWORK</div>
-			</div>
-		</div>
+		</AutoFitContainer>
 	</div>
 </template>
 
-<script setup lang="ts">
-	// import { getWebsocket } from "/@/utils/websocket"
-	// import { hwData } from "/@/utils/websocket"
-	import { onMounted } from "vue"
-
-	import Cpu from "/@/views/cpu/index.vue"
-	import Ram from "/@/views/ram/index.vue"
-	import { wsConnected } from "/@/utils/dataSource"
+<script lang="ts">
+	import { defineComponent, onMounted, ref } from "vue"
 	import Gpu from "/@/views/gpu/index.vue"
+	import AutoFitContainer from "/@/components/AutoFitContainer/index.vue"
+	import Cpu from "/@/views/cpu/index.vue"
+	export default defineComponent({
+		components: { Cpu, Gpu, AutoFitContainer },
+		setup() {
+			const flag = ref("")
+
+			function showDetail(type: string) {
+				if (type !== flag.value) {
+					flag.value = type
+				} else {
+					flag.value = ""
+				}
+			}
+
+			return { flag, showDetail }
+		}
+	})
 
 	onMounted(() => {})
 </script>
@@ -42,27 +49,36 @@
 		align-items: center;
 	}
 	.hw-container {
-		width: 960px;
-		height: 540px;
+		height: 100%;
+		width: 100%;
 		background-color: #000;
 		color: #fff;
-		display: flex;
-		flex-direction: column;
-		padding: 5px;
 		> div {
-			display: flex;
-			flex: 1;
-			&.ram {
-				flex: 0.5;
-			}
-			> div {
-				flex: 1;
-				background-color: #222;
-				margin: 5px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
+			transition: 0.5s;
+			transition-delay: 0.2s;
+			cursor: pointer;
+		}
+		div.active {
+			top: 1rem;
+			left: 1rem;
+			bottom: 1rem;
+			right: 1rem;
+			width: calc(100% - 2rem);
+			height: calc(100% - 2rem);
+			cursor: unset;
+			animation: touchDown 0.4s;
+			z-index: 100;
+		}
+	}
+	@keyframes touchDown {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(0.95);
+		}
+		100% {
+			transform: scale(1);
 		}
 	}
 </style>
