@@ -8,6 +8,24 @@
 			<div class="chart">
 				<LineChart />
 			</div>
+			<div class="text">
+				<div>
+					<p class="title">CPU 使用率</p>
+					<span class="value">56%</span>
+				</div>
+				<div>
+					<p class="title">运行频率</p>
+					<span class="value">4.0 GHz</span>
+				</div>
+				<div>
+					<p class="title">逻辑处理器</p>
+					<span class="value">12</span>
+				</div>
+				<div>
+					<p class="title">CPU 温度</p>
+					<span class="value">64 ℃</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -54,7 +72,27 @@
 		}
 		.chart {
 			width: 100%;
-			height: 21.875rem; /* 350/16 */
+			height: 17.5rem /* 280/16 */;
+			margin-bottom: 1rem /* 16/16 */;
+		}
+		.text {
+			display: flex;
+			padding: 0.25rem /* 4/16 */ 0;
+			& > div {
+				flex: 1;
+				border-left: 1px solid #888;
+				padding: 0 0.375rem /* 6/16 */;
+				&:first-child {
+					border-left: none;
+				}
+				.title {
+					color: #ccc;
+					margin-bottom: 0;
+				}
+				.value {
+					font-size: 1.375rem /* 22/16 */;
+				}
+			}
 		}
 	}
 </style>
