@@ -1,7 +1,7 @@
 import { ref } from "vue"
 
-export const width = ref(960)
-export const height = ref(540)
+export const width = ref(1920)
+export const height = ref(1080)
 export const onload = ref(false)
 
 // TODO: 有概率出现宽度模式与高度模式瞬时切换的BUG

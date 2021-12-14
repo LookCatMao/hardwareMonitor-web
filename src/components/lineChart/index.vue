@@ -1,8 +1,8 @@
 <template>
 	<div class="lineChart">
 		<div class="head">
-			<span class="title">60秒内的利用率 %</span>
-			<span class="legend">100%</span>
+			<span class="title">{{ title }}</span>
+			<span class="legend">{{ legend }}</span>
 		</div>
 		<div class="chart" ref="chartElRef"></div>
 	</div>
@@ -15,6 +15,16 @@
 
 	export default defineComponent({
 		name: "LineChart",
+		props: {
+			title: {
+				type: String,
+				default: "60秒内的利用率 %"
+			},
+			legend: {
+				type: String,
+				default: "100%"
+			}
+		},
 		setup() {
 			const chartElRef = ref<HTMLDivElement>()
 			const { setOptions } = useECharts(chartElRef as Ref<HTMLDivElement>)

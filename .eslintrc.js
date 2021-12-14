@@ -25,6 +25,7 @@ module.exports = defineConfig({
 	],
 	plugins: ["prettier"],
 	rules: {
+		"linebreak-style": 0,
 		"@typescript-eslint/ban-ts-ignore": "off",
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/no-explicit-any": "off",

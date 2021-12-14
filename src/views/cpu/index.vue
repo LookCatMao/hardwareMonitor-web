@@ -2,7 +2,7 @@
 	<div class="cpu" :class="{ active: showDetail }">
 		<div class="display-basic">
 			<p class="head">
-				<span class="title">CPU{{ showDetail }}</span>
+				<span class="title">CPU</span>
 				<span class="model">Intel(R) Core(TM) i7-9750H</span>
 			</p>
 			<div class="chart">
@@ -34,9 +34,9 @@
 <style lang="less" scoped>
 	.cpu {
 		position: absolute;
-		top: 1rem;
-		left: 1rem;
-		width: 40rem;
+		top: 0.75rem /* 12/16 */;
+		left: 0.75rem /* 12/16 */;
+		width: 39rem /* 624/16 */;
 		height: 28rem;
 		background-color: #444444;
 		padding: 1rem;

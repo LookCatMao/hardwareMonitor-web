@@ -1,15 +1,25 @@
 <template>
 	<div class="gpu" :class="{ active: showDetail }">
 		<p class="head">
-			<span class="title">GPU{{ showDetail }}</span>
+			<span class="title">GPU</span>
 			<span class="model">NVIDIA GeForce GTX 1660 Ti</span>
 		</p>
 		<div class="chart">
 			<LineChart />
 		</div>
 		<div class="text">
-			<div class="gpu-mem"></div>
-			<div class="gpu-temperature"></div>
+			<div class="gpu-usage">
+				<p class="title">GPU 利用率</p>
+				<span class="value">1%</span>
+			</div>
+			<div class="gpu-mem">
+				<p class="title">GPU 内存</p>
+				<span class="value">0.8/6 GB</span>
+			</div>
+			<div class="gpu-temperature">
+				<p class="title">GPU 温度</p>
+				<span class="value">56 ℃</span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -34,9 +44,9 @@
 <style lang="less" scoped>
 	.gpu {
 		position: absolute;
-		top: 1rem;
-		left: 42rem;
-		width: 40rem;
+		top: 0.75rem /* 12/16 */;
+		left: 40.5rem /* 12/16 */;
+		width: 39rem /* 624/16 */;
 		height: 28rem;
 		background-color: #444444;
 		padding: 1rem;
@@ -59,12 +69,21 @@
 		}
 		.text {
 			display: flex;
-			height: 3rem;
+			padding: 0.25rem /* 4/16 */ 0;
 			& > div {
-				border-left: 1px solid #ccc;
-			}
-			&:first-child {
-				border-left: none;
+				flex: 1;
+				border-left: 1px solid #888;
+				padding: 0 0.375rem /* 6/16 */;
+				&:first-child {
+					border-left: none;
+				}
+				.title {
+					color: #ccc;
+					margin-bottom: 0;
+				}
+				.value {
+					font-size: 1.375rem /* 22/16 */;
+				}
 			}
 		}
 	}
