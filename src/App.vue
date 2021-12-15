@@ -42,6 +42,8 @@
 		overflow: hidden auto;
 		height: 100%;
 		width: 100%;
+		transform: translateZ(0);
+		user-select: none;
 	}
 	#app {
 		width: 100%;

@@ -1,32 +1,35 @@
 <template>
 	<div class="cpu" :class="{ active: showDetail }">
-		<div class="display-basic">
-			<p class="head">
-				<span class="title">CPU</span>
-				<span class="model">Intel(R) Core(TM) i7-9750H</span>
-			</p>
-			<div class="chart">
-				<LineChart />
+		<transition name="fade">
+			<div class="display-basic" v-if="!showDetail">
+				<p class="head">
+					<span class="title">CPU</span>
+					<span class="model">Intel(R) Core(TM) i7-9750H</span>
+				</p>
+				<div class="chart">
+					<LineChart />
+				</div>
+				<div class="text">
+					<div>
+						<p class="title">CPU 使用率</p>
+						<span class="value">56%</span>
+					</div>
+					<div>
+						<p class="title">运行频率</p>
+						<span class="value">4.0 GHz</span>
+					</div>
+					<div>
+						<p class="title">逻辑处理器</p>
+						<span class="value">12</span>
+					</div>
+					<div>
+						<p class="title">CPU 温度</p>
+						<span class="value">64 ℃</span>
+					</div>
+				</div>
 			</div>
-			<div class="text">
-				<div>
-					<p class="title">CPU 使用率</p>
-					<span class="value">56%</span>
-				</div>
-				<div>
-					<p class="title">运行频率</p>
-					<span class="value">4.0 GHz</span>
-				</div>
-				<div>
-					<p class="title">逻辑处理器</p>
-					<span class="value">12</span>
-				</div>
-				<div>
-					<p class="title">CPU 温度</p>
-					<span class="value">64 ℃</span>
-				</div>
-			</div>
-		</div>
+			<div class="display-detail" v-else> Hi </div>
+		</transition>
 	</div>
 </template>
 
@@ -55,9 +58,17 @@
 		top: 0.75rem /* 12/16 */;
 		left: 0.75rem /* 12/16 */;
 		width: 39rem /* 624/16 */;
-		height: 28rem;
+		height: 32.625rem /* 522/16 */;
 		background-color: #444444;
 		padding: 1rem;
+		.display-basic,
+		.display-detail {
+			position: absolute;
+			left: 1rem;
+			top: 1rem;
+			right: 1rem;
+			bottom: 1rem;
+		}
 		.head {
 			display: flex;
 			justify-content: space-between;
@@ -72,7 +83,7 @@
 		}
 		.chart {
 			width: 100%;
-			height: 17.5rem /* 280/16 */;
+			height: 21.875rem /* 350/16 */;
 			margin-bottom: 1rem /* 16/16 */;
 		}
 		.text {

@@ -47,7 +47,7 @@
 		top: 0.75rem /* 12/16 */;
 		left: 40.5rem /* 12/16 */;
 		width: 39rem /* 624/16 */;
-		height: 28rem;
+		height: 32.625rem /* 522/16 */;
 		background-color: #444444;
 		padding: 1rem;
 		.head {
@@ -64,7 +64,7 @@
 		}
 		.chart {
 			width: 100%;
-			height: 17.5rem /* 280/16 */;
+			height: 21.875rem /* 350/16 */;
 			margin-bottom: 1rem /* 16/16 */;
 		}
 		.text {
