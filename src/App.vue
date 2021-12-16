@@ -5,6 +5,8 @@
 				<Cpu :showDetail="flag === 'cpu'" @click="showDetail('cpu')" />
 				<Gpu :showDetail="flag === 'gpu'" @click="showDetail('gpu')" />
 				<Ram :showDetail="flag === 'ram'" @click="showDetail('ram')" />
+				<Storage :showDetail="flag === 'storage'" @click="showDetail('storage')" />
+				<Network :showDetail="flag === 'network'" @click="showDetail('network')" />
 			</div>
 		</AutoFitContainer>
 	</div>
@@ -16,8 +18,10 @@
 	import AutoFitContainer from "/@/components/AutoFitContainer/index.vue"
 	import Cpu from "/@/views/cpu/index.vue"
 	import Ram from "/@/views/ram/index.vue"
+	import Storage from "/@/views/storage/index.vue"
+	import Network from "/@/views/network/index.vue"
 	export default defineComponent({
-		components: { Ram, Cpu, Gpu, AutoFitContainer },
+		components: { Network, Storage, Ram, Cpu, Gpu, AutoFitContainer },
 		setup() {
 			const flag = ref("")
 
@@ -59,7 +63,7 @@
 		color: #fff;
 		> div {
 			transition: 0.5s;
-			transition-delay: 0.2s;
+			//transition-delay: 0.2s;
 			cursor: pointer;
 		}
 		div.active {
@@ -70,7 +74,7 @@
 			width: calc(100% - 1.5rem);
 			height: calc(100% - 1.5rem);
 			cursor: unset;
-			animation: touchDown 0.4s;
+			//animation: touchDown 0.4s;
 			z-index: 100;
 		}
 	}
