@@ -1,0 +1,103 @@
+.hw-container-block {
+  width: 890px;
+  height: 260px;
+  background-image: url("@/assets/images/container-type1.png");
+  background-size: 100%;
+  .main {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 96px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px 0;
+    line-height: 1;
+    .temperature{
+      width: 180px;
+      padding: 0 16px;
+      font-family: "Agency FB", serif;
+      font-weight: bold;
+      text-align: right;
+      color: #02e2ff;
+      .value{
+        font-size: 80px;
+        margin-right: 12px;
+      }
+      .unit{
+        font-size: 50px;
+      }
+    }
+    .custom-slot{
+      height: 100%;
+      flex: 1;
+    }
+    .usage{
+      font-family: "Agency FB", serif;
+      padding: 0 16px;
+      color: #02e2ff;
+      font-weight: bold;
+      text-align: right;
+      width: 230px;
+      .value{
+        font-size: 130px;
+        margin-right: 12px;
+      }
+      .unit{
+        font-size: 60px;
+      }
+    }
+  }
+  .sub {
+    position: absolute;
+    top: 176px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    padding-right: 90px;
+    padding-left: 45px;
+    font-family: "Agency FB", serif;
+    font-weight: bold;
+    line-height: 1;
+    .model{
+      flex: 1;
+      font-size: 64px;
+      color: #02e2ff;
+    }
+    .extra{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .title{
+        font-size: 18px;
+        color: #f7ea00;
+      }
+      .content{
+        font-size: 34px;
+        color: #02e2ff;
+        .value{
+
+        }
+        .unit{
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+  .type {
+    width: 70px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: 34px;
+    font-family: "Agency FB", serif;
+    line-height: 1;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #f7ea00;
+  }
+}

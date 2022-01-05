@@ -1,6 +1,11 @@
 <template>
 	<div class="contain-wrapper">
-		<div class="contain-container" id="Contain" :style="{ width: width + 'px', height: height + 'px' }" v-if="onload">
+		<div
+			class="contain-container"
+			id="Contain"
+			:style="{ width: configSize.width + 'px', height: configSize.height + 'px', transform: `scale(${ratio})` }"
+			v-if="onload"
+		>
 			<slot></slot>
 		</div>
 	</div>
@@ -9,7 +14,7 @@
 <script lang="ts">
 	import { defineComponent } from "vue"
 	import { useEventListener } from "/@/utils/use/useEventListener"
-	import { calcSize, height, width, onload } from "/@/utils/use/useAutoFit"
+	import { calcSize, height, width, onload, configSize, ratio } from "/@/utils/use/useAutoFit"
 	import { tryOnUnmounted } from "@vueuse/core"
 
 	export default defineComponent({
@@ -27,18 +32,14 @@
 				removeEvent()
 			})
 
-			return { width, height, onload }
+			return { width, height, onload, configSize, ratio }
 		}
 	})
 </script>
 
 <style lang="less" scoped>
 	.contain-wrapper {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+		flex: 1;
 		background-color: #999;
 		display: flex;
 		justify-content: center;
@@ -46,6 +47,7 @@
 		.contain-container {
 			overflow: hidden;
 			position: relative;
+			transition: 0.4s;
 		}
 	}
 </style>
