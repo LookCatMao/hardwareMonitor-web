@@ -11,7 +11,35 @@
     top: 10px;
     left: 10px;
     right: 10px;
-    bottom: 200px;
+    bottom: 210px;
+    padding-top: 18px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    .chart{
+      width: 680px;
+      height: 150px;
+      border: 2px solid #f7ea00;
+    }
+    .legend{
+      overflow: hidden;
+      font-family: "Agency FB", serif;
+      font-weight: bold;
+      font-size: 36px;
+      color: #02e2ff;
+      line-height: 40px;
+      padding-left: 10px;
+      >p{
+        margin: 20px 0;
+        padding-left: 6px;
+      }
+      .download{
+        border-left: 4px solid #02e2ff;
+      }
+      .upload{
+        border-left: 4px dashed #02e2ff;
+      }
+    }
   }
   .network-usage{
     position: absolute;
@@ -19,6 +47,34 @@
     left: 10px;
     right: 10px;
     bottom: 10px;
+    padding: 10px 20px 40px 20px;
+    font-family: "Agency FB", serif;
+    font-size: 54px;
+    line-height: 1;
+    font-weight: bold;
+    color: #02e2ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .usage-item{
+      height: 74px;
+      background-image: url("@/assets/images/network-line.png");
+      background-size: 100%;
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      display: flex;
+      .title{
+        flex: 1;
+      }
+      .speed{
+        font-size: 50px;
+        .unit{
+          display: inline-block;
+          margin-left: 16px;
+          width: 100px;
+        }
+      }
+    }
   }
   .type {
     position: absolute;
