@@ -9,9 +9,7 @@
   "dependencies": {
     "@types/crypto-js": "^4.0.1",
     "@vueuse/core": "^6.8.0",
-    "axios": "^0.21.1",
-    "crypto-js": "^4.0.0",
-    "crypto-ts": "^1.0.2",
+    "axios": "^0.24.0",
     "echarts": "^5.1.0",
     "echarts-liquidfill": "^3.0.0",
     "gsap": "^3.6.1",
