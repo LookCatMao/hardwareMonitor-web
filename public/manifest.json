@@ -1,0 +1,6 @@
+{
+  "name": "pwa",
+  "short_name": "pwa",
+  "background_color": "#000000",
+  "display": "fullscreen"
+}
