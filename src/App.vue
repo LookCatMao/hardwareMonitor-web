@@ -6,6 +6,8 @@
 				<Cpu />
 				<Gpu />
 				<Ram />
+				<Network />
+				<Storage />
 				<Foot />
 			</div>
 		</AutoFitContainer>
@@ -20,8 +22,10 @@
 	import Gpu from "/@/views/gpu/index.vue"
 	import Ram from "/@/views/ram/index.vue"
 	import Foot from "/@/views/foot/index.vue"
+	import Network from "/@/views/network/index.vue"
+	import Storage from "/@/views/storage/index.vue"
 	export default defineComponent({
-		components: { Foot, Ram, Gpu, Cpu, Logo, AutoFitContainer },
+		components: { Storage, Network, Foot, Ram, Gpu, Cpu, Logo, AutoFitContainer },
 		setup() {
 			return {}
 		}

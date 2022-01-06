@@ -15,7 +15,7 @@ export default defineConfig({
 		})
 	],
 	optimizeDeps: {
-		include: ["echarts-liquidfill", "echarts", "crypto-ts"]
+		include: ["echarts-liquidfill", "echarts"]
 	},
 	resolve: {
 		alias: [

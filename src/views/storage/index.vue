@@ -25,5 +25,25 @@
 
 <style lang="less" scoped>
 	.hw-storage {
+		width: 950px;
+		height: 300px;
+		position: absolute;
+		top: 1490px;
+		left: 60px;
+		background-image: url("@/assets/images/container-storage.png");
+		background-size: 100%;
+		.type {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			width: 120px;
+			text-align: center;
+			font-size: 34px;
+			font-family: "Agency FB", serif;
+			line-height: 1;
+			font-weight: bold;
+			letter-spacing: 1px;
+			color: #f7ea00;
+		}
 	}
 </style>
