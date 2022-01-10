@@ -6,26 +6,67 @@
   left: 60px;
   background-image: url("@/assets/images/container-storage.png");
   background-size: 100%;
+  font-family: "Agency FB", serif;
+  font-weight: bold;
   .disk-list{
     position: absolute;
     top: 10px;
     left: 10px;
     bottom: 10px;
     right: 170px;
+    padding-top: 22px;
+    padding-left: 8px;
   }
   .disk-count{
     position: absolute;
-    top: 10px;
+    top: 32px;
     bottom: 10px;
     right: 130px;
     left: 780px;
+    width: 26px;
+    height: 240px;
+    background-color: #f7ea0088;
+    font-size: 0;
+    >p{
+      transform-origin: left bottom;
+      margin-top: -26px;
+      width: 240px;
+      transform: rotate(90deg);
+      text-align: center;
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 26px;
+      color: #f7ea00;
+    }
   }
   .disk-status{
     position: absolute;
     left: 820px;
-    right: 10px;
-    top: 10px;
-    bottom: 50px;
+    right: 20px;
+    top: 32px;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    >div{
+      height: 60px;
+      background-color: #02e2f55f;
+      text-align: center;
+      padding-top: 2px;
+      letter-spacing: 1px;
+      font-size: 30px;
+      position: relative;
+      &:after{
+        content: "";
+        display: block;
+        margin: 0 10%;
+        width: 80%;
+        height: 3px;
+        background-color: #02e2ff;
+        position: absolute;
+        top: 50px;
+      }
+    }
   }
   .type {
     position: absolute;
@@ -34,9 +75,7 @@
     width: 120px;
     text-align: center;
     font-size: 34px;
-    font-family: "Agency FB", serif;
     line-height: 1;
-    font-weight: bold;
     letter-spacing: 1px;
     color: #f7ea00;
   }
