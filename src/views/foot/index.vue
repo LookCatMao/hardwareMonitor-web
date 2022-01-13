@@ -1,6 +1,6 @@
 <template>
 	<div class="hw-foot">
-		<Date />
+		<Calendar />
 		<Clock />
 		<Copyright />
 	</div>
@@ -9,10 +9,26 @@
 <script>
 	import Copyright from "./child/copyright.vue"
 	import Clock from "./child/clock.vue"
-	import Date from "./child/date.vue"
+	import Calendar from "./child/calendar.vue"
+	import { ref } from "vue"
 	export default {
 		name: "Foot",
-		components: { Date, Clock, Copyright }
+		components: { Calendar, Clock, Copyright },
+		setup() {
+			const currentDateTime = ref(new Date())
+			const timer = undefined
+			updateCurrentDateTime()
+
+			function updateCurrentDateTime() {
+				clearTimeout(timer)
+				setTimeout(() => {
+					currentDateTime.value = new Date()
+					updateCurrentDateTime()
+				}, 100)
+			}
+
+			return {}
+		}
 	}
 </script>
 

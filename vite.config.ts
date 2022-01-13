@@ -9,6 +9,10 @@ function pathResolve(dir: string) {
 }
 
 export default defineConfig({
+	server: {
+		port: 5000,
+		host: true
+	},
 	plugins: [
 		vue(),
 		VitePWA({
