@@ -37,3 +37,7 @@ function strNumSize(tempNum: number) {
 	}
 	return newNum.length
 }
+//数字补零
+export function PrefixZero(num, n) {
+	return (Array(n).join("0") + num).slice(-n)
+}

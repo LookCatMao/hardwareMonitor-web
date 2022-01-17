@@ -1,17 +1,24 @@
 <template>
 	<div class="hw-clock">
-		<div class="time">4:48</div>
-		<div class="meridiem">PM</div>
+		<div class="time"
+			>{{ PrefixZero(currentDateTime.getHours(), 2) }}:{{ PrefixZero(currentDateTime.getMinutes(), 2) }}:{{
+				PrefixZero(currentDateTime.getSeconds(), 2)
+			}}</div
+		>
 	</div>
 </template>
 
 <script lang="ts">
 	import { defineComponent } from "vue"
+	import { PrefixZero } from "/@/utils/formatter"
 
 	export default defineComponent({
 		name: "Clock",
+		props: {
+			currentDateTime: Date
+		},
 		setup() {
-			return {}
+			return { PrefixZero }
 		}
 	})
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div class="hw-foot">
-		<Calendar />
-		<Clock />
+		<Calendar :currentDateTime="currentDateTime" />
+		<Clock :currentDateTime="currentDateTime" />
 		<Copyright />
 	</div>
 </template>
@@ -27,7 +27,7 @@
 				}, 100)
 			}
 
-			return {}
+			return { currentDateTime }
 		}
 	}
 </script>
